@@ -23,7 +23,7 @@ class CourseController extends Controller
         $this->course = $course;
     }
 
-    /**
+    /**a
      * @param Request $request
      * @return JsonResponse
      */
@@ -32,20 +32,15 @@ class CourseController extends Controller
         $basic = $this->course::BASIC_TYPE;
         $additional = $this->course::ADDITIONAL_TYPE;
 
-        return response()->json([
-            'data' => [
-                $basic => $this->course::where('type', $basic)->get(),
-                $additional => $this->course::where('type', $additional)->get(),
-            ],
-        ]);
+        return response()->json($this->course::all());
     }
 
     /**
      * @param Request $request
-     * @param int $entity
+     * @param string $entity
      * @return JsonResponse
      */
-    public function show(Request $request, int $entity): JsonResponse
+    public function show(Request $request, string $entity): JsonResponse
     {
         $entity = $this->course->whereId($entity)->with('videos', 'user')->first();
         $user = $entity->user->first();
@@ -53,7 +48,7 @@ class CourseController extends Controller
         return response()->json([
             'course' => $entity->only('name'),
             'videos' => $entity->videos,
-            'completed_tasks' => $user->pivot->completed_tasks
+            'completed_tasks' => 2,
         ]);
     }
 }

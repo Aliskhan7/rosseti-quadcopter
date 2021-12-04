@@ -25,9 +25,9 @@ class QuadcopterController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getOneRandom(Request $request): JsonResponse
+    public function getIndexRandom(Request $request): JsonResponse
     {
-        return response()->json($this->quadcopter->inRandomOrder()->first());
+        return response()->json($this->quadcopter->limit(3)->get());
     }
 
     /**

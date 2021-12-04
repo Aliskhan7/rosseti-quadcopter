@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 const PUBLIC_ACTIONS = ['index', 'show'];
 const SECURE_ACTIONS = ['update', 'destroy', 'store'];
 
-Route::post('login', [AuthController::class, 'signIn']);
+Route::post('login', [AuthController::class, 'signIn'])->name('login');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [AuthController::class, 'signOut']);
@@ -38,23 +38,23 @@ Route::middleware('auth:sanctum')->group(function () {
     // LAYOUT: Profile
     Route::get('profile', [UserController::class, 'getProfile']);
 
-    Route::prefix('quadcopter')->group(function () {
-        // LAYOUT: Models
-        Route::get('get_one_random', [QuadcopterController::class, 'getOneRandom'])->name('index');
-
+//    Route::prefix('quadcopter')->group(function () {
         // LAYOUT: All models
         // -> INDEX in resource
 
         // LAYOUT: Compare, Train mode
         // -> SHOW in resource
         Route::get('list', [QuadcopterController::class, 'getList']);
-    });
 
-    Route::prefix('course')->group(function () {
+        // LAYOUT: Models
+        Route::get('get_index_random', [QuadcopterController::class, 'getIndexRandom'])->name('index');
+//    });
+
+//    Route::prefix('course')->group(function () {
         // LAYOUT: Courses
         // -> INDEX in resource
 
         // LAYOUT: Courses page
         // -> SHOW in resource
-    });
+//    });
 });

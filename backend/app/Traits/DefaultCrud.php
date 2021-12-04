@@ -17,10 +17,10 @@ trait DefaultCrud {
 
     /**
      * @param Request $request
-     * @param int $entity
+     * @param string $entity
      * @return JsonResponse
      */
-    public function show(Request $request, int $entity): JsonResponse
+    public function show(Request $request, string $entity): JsonResponse
     {
         return response()->json($this->model::findOrFail($entity));
     }

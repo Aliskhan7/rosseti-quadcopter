@@ -16,10 +16,13 @@ class CreateVideosTable extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
-            $table->string('link');
+            $table->string('image');
             $table->text('description')->nullable();
             $table->tinyInteger('complexity');
             $table->smallInteger('duration')->nullable();
+            $table->tinyInteger('scores');
+            $table->string('name')->default('Урок');
+            $table->string('source')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('course_id');

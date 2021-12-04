@@ -14,11 +14,14 @@ class VideoFactory extends Factory
     public function definition()
     {
         return [
-            'link' => $this->faker->url,
+            'image' => $this->faker->imageUrl(950, 360),
             'description' => $this->faker->text(32),
+            'scores' => $this->faker->randomElement([20, 40, 60]),
+            'source' => 'http://16.170.19.169',
+            'name' => $this->faker->word,
             'complexity' => $this->faker->numberBetween(0, 5),
             'duration' => $this->faker->numberBetween(30, 120),
-            'course_id' => $this->faker->numberBetween(1, 6)
+            'course_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }

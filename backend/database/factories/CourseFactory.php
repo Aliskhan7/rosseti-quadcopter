@@ -14,8 +14,16 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
-            'image' => public_path('assets/images/tmp/quadcopter.png'),
+            'name' => $this->faker->randomElement([
+                'Введение в беспилотную авиатехнику',
+                'ПО управления БПЛА',
+                'Применение VR технологий в беспилотной авиации',
+                'БПЛА мультироторного типа',
+                'БПЛА в сельском хозяйстве',
+                'FPV дроны - гоночные квадрокоптеры',
+                'БПЛА в морских исследованиях',
+            ]),
+            'img' => 'https://expovision.tech/assets/images/tmp/quadcopter.png',
             'description' => $this->faker->text,
             'scores' => $this->faker->randomElement([20, 40, 60]),
         ];

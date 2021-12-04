@@ -17,8 +17,12 @@ class CreateQuadcoptersTable extends Migration
         Schema::create('quadcopters', function (Blueprint $table) {
             $table->id();
             $table->string('source');
-            $table->smallInteger('flight_time');
-            $table->smallInteger('wind_resist');
+            $table->string('icon');
+            $table->string('img');
+            $table->string('name');
+            $table->smallInteger('timeFly');
+            $table->smallInteger('sustainability');
+            $table->string('description');
             $table->integer('radius');
             $table->enum('type', array_keys(Quadcopter::$types));
             $table->timestamps();

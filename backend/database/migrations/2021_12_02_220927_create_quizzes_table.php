@@ -19,6 +19,7 @@ class CreateQuizzesTable extends Migration
             $table->text('description')->nullable();
             $table->integer('duration');
             $table->tinyInteger('complexity');
+            $table->string('source');
             $table->timestamps();
         });
     }
