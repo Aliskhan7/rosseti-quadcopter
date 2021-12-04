@@ -1,10 +1,15 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger/src';
-import {auth} from "./auth";
-import { profile } from './profile'
+import auth from "../redux/reducers/auth";
 import { comparis } from './comparis'
 import { education } from './education'
+import message from '../redux/reducers/message'
+import { quadroReducer } from './reducers/slider'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { courseReduce } from './reducers/course'
+import { comparisReduces } from './reducers/comparis'
+import { selectReducer } from './reducers/select'
 
 const logger = createLogger({
   diff: true,
@@ -13,11 +18,15 @@ const logger = createLogger({
 
 const rootReducer = combineReducers({
   auth: auth,
-  profile: profile,
+  message: message,
   comparis: comparis,
   education: education,
+  quadroReducer: quadroReducer,
+  courseReduce: courseReduce,
+  comparisReduces: comparisReduces,
+  selectReducer: selectReducer
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
 
 export default store;

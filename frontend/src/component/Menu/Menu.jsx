@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../assets/img/logo.png'
-import {Route, NavLink, Routes} from 'react-router-dom';
+import { Route, NavLink, Routes, Navigate } from 'react-router-dom'
 
 import Education from "../../pages/Education";
 import Rating from "../../pages/Rating";
@@ -11,8 +11,18 @@ import Login from '../../pages/Login'
 import Comparison from '../Alldrons/Comparison'
 import TreningEd from '../../pages/TreningEd'
 import Tests from '../../pages/Tests'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../../redux/actions/auth'
 
 function Menu({data, dataEd}) {
+    const { isLoggedIn } = useSelector(state => state.auth)
+
+    const dispatch = useDispatch()
+
+    const onLogout = () =>{
+        dispatch(logout())
+    }
+
     return (
         <div>
             <nav className='nav'>
@@ -21,16 +31,16 @@ function Menu({data, dataEd}) {
                     <NavLink activeClassName='nav-menu__item' to='/'>Дроны</NavLink>
                     <NavLink activeClassName='nav-menu__item' to='/Education'>Обучение</NavLink>
                     <NavLink activeClassName='nav-menu__item' to='/Rating'>Рейтинг</NavLink>
-                    <NavLink activeClassName='nav-menu__item' to='/Login'>Login</NavLink>
-                    {/*<NavLink activeClassName='nav-menu__item' to='/Comparison'>Сравнение</NavLink>*/}
-                    {/*<NavLink activeClassName='nav-menu__item' to='/Education/TreningEd'>Ed</NavLink>*/}
+                    {!isLoggedIn
+                      ? <NavLink activeClassName='nav-menu__item' to='/Login'>Вход</NavLink>
+                      : <span onClick={onLogout}>Выйти</span>
+                    }
                 </div>
                 <div className='accaunt'>
 
                 </div>
             </nav>
             <Routes>
-
                 <Route path='/' element={<Home data={data}/>}></Route>
                 <Route path='/Education' element={<Education dataEd={dataEd}/>}></Route>
                 <Route path='/Education/TreningEd' element={<TreningEd/>}></Route>

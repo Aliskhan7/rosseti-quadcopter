@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { Alert } from '@material-ui/lab';
 import Button from '@material-ui/core/Button';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate, Navigate } from 'react-router-dom'
 // import { useDispatch, useSelector } from 'react-redux';
 // import { startLogin } from '../redux/actions';
 import {
@@ -23,6 +23,7 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { useDispatch, useSelector } from 'react-redux'
 import { startLogin } from '../redux/actions'
+import { login } from '../redux/actions/auth'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,10 +47,10 @@ function Login(props){
 
   const dispatch = useDispatch();
 
-  const error = useSelector((state) => state.auth.error);
+  const error = useSelector(({message}) => message.message);
   const loading = useSelector((state) => state.auth.loadingLogin);
 
-  const [login, setLogin] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
@@ -57,12 +58,18 @@ function Login(props){
     return setShowPassword(!showPassword);
   };
 
+  const { isLoggedIn } = useSelector(state => state.auth)
 
+
+  if(isLoggedIn){
+    return <Navigate to='/'/>
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(startLogin(login, password));
+    dispatch(login(email, password));
   };
+
   return(
     <div className='containerLogin'>
       <div className='headerLogin'>
@@ -85,8 +92,8 @@ function Login(props){
                     id="email"
                     label="Логин"
                     autoFocus
-                    value={login}
-                    onChange={(e) => setLogin(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <FormControl
                     variant="outlined"

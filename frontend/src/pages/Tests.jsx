@@ -44,12 +44,12 @@ function Tests (props) {
             </div>
             <div className="tests_level">
               <span>Сложность: {item.level}</span>
-              <span>Длительность: {item.time}</span>
+              <span>Длительность: {item.time} минут</span>
             </div>
             <div className="tests_description">
               {item.description}
             </div>
-            <a href="#" className='demo-info__btn'>
+            <a href="http://16.170.19.169" target='_blank' className='demo-info__btn'>
               Начать тест
             </a>
           </div>

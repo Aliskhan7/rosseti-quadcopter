@@ -12,35 +12,31 @@ import icon2 from "../../assets/img/clock.png";
 import icon3 from "../../assets/img/arr.png";
 import icon4 from "../../assets/img/wind.png";
 import BtnAlldrons from "../Alldrons/BtnAlldrons";
-import { comparis, startLogin } from '../../redux/actions'
-import { useDispatch } from 'react-redux'
+import { comparis, dataServiceAction, getQuadro, startLogin } from '../../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { dataService } from '../../redux/dataService'
+import { quadroReducer } from '../../redux/reducers/slider'
 
 
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
-const SliderItem = ({data}) => {
+const SliderItem = () => {
 
-    // const settings = {
-    //     infinite: true,
-    //     speed: 300,
-    //     slidesToShow: 3,
-    //     centerMode: true,
-    //     variableWidth: true,
-    //     centerPadding: '20px',
-    //     autoplay: true,
-    //     autoplaySpeed: 2000,
-    // }
-
-
+  const data = useSelector( state => state.quadroReducer.items)
   const dispatch = useDispatch();
+
+
+  useEffect(() =>{
+    dispatch(getQuadro())
+  }, [])
+
 
 
   let navigate = useNavigate();
 
   const handleData = (item) =>{
-    const dataSli = data[item - 1];
-    dispatch(comparis(dataSli));
+    dispatch(comparis(item));
     navigate('/Comparison')
   }
 
@@ -63,7 +59,7 @@ const SliderItem = ({data}) => {
                                     />
                                 </div>
                                 <div className='swiper-btn'>
-                                    <Button addComparis={() => handleData(item.id)} >
+                                    <Button addComparis={() => handleData(item)} >
                                         Сравнить
                                     </Button>
                                 </div>

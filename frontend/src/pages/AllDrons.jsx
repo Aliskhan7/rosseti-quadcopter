@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import icon2 from "../assets/img/clock.png";
 import icon3 from "../assets/img/arr.png";
 import icon4 from "../assets/img/wind.png";
+import { useDispatch, useSelector } from 'react-redux'
+import { getQuadro, getQuadroAll } from '../redux/actions'
+import { quadroAll } from '../redux/reducers/quadroAll'
 
-function AllDrons({data}) {
+function AllDrons() {
+
+  const dispatch = useDispatch()
+  const quadros = useSelector( state => state.quadroReducer.items)
+
+
+  useEffect(() =>{
+    dispatch(getQuadroAll())
+  }, [])
+
+
     return (
         <div className='allDrons'>
             <h2 className='title-text'>Доступные модели БПЛА</h2>
             <div className='allDrons-content'>
-                {data.map(item =>{
+                {quadros.map(item =>{
                     return (
                         <div className='allDrons-content__item'>
                             <img src={item.img} alt=""/>

@@ -209,21 +209,23 @@ $text-white: #fff;
   margin-bottom: 50px;
 }
 .allDrons{
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .allDrons-content{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   &__item{
-    max-width: 700px;
+    max-width: 50%;
     display: flex;
     align-items: center;
     padding: 10px 0;
     border-radius: 8px;
     transition: all .2s linear;
+    margin-bottom: 10px;
     & > img{
-      width: 300px;
+      width: 190px;
     }
     &:hover{
       cursor: pointer;
@@ -233,7 +235,7 @@ $text-white: #fff;
       border-radius: 8px;
     }
     .item-text{
-      padding: 30px 50px 30px 0;
+      padding: 30px 50px 30px 15px;
       display: flex;
       justify-content: space-between;
       flex-direction: column;
@@ -244,6 +246,7 @@ $text-white: #fff;
         font-weight: 600;
       }
       &__description{
+        margin: 5px 0;
         color: $gray;
         font-size: 18px;
       }
@@ -279,14 +282,15 @@ $text-white: #fff;
 .dronEd-content{
   display: flex;
   justify-content: space-between;
-
+  flex-wrap: wrap;
   &__item{
-    max-width: 650px;
+    width: 47%;
     display: flex;
     flex-direction: column;
-    padding: 36px 48px 30px 48px;
+    padding: 30px 40px;
     box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.12);
     border-radius: 8px;
+    margin-bottom: 30px;
     &:hover{
       cursor: pointer;
     }
@@ -297,6 +301,9 @@ $text-white: #fff;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+      & > img{
+        max-width: 170px;
+      }
       &__title{
         max-width: 400px;
         color: $dark;
@@ -308,12 +315,17 @@ $text-white: #fff;
     .edProgress{
       display: flex;
       flex-direction: column;
+      span{
+        font-size: 16px;
+        color: $gray;
+        margin-bottom: 12px;
+      }
     }
   }
 }
 
 .edTrening{
-  overflow: hidden;
+  margin-bottom: 50px;
   .title-text{
     position: relative;
     padding-left: 35px;
@@ -420,12 +432,23 @@ $text-white: #fff;
 }
 
 .compare {
-  &-content {
+  .compare-items{
     display: flex;
     justify-content: space-between;
+    width: 100%;
     align-items: center;
+    .just-flex-end{
+      justify-content: flex-end;
+
+    }
+  }
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     &__item {
-      width: 590px;
+      width: 50%;
       display: flex;
       align-items: center;
       padding: 10px 0;
@@ -433,10 +456,10 @@ $text-white: #fff;
       transition: all .2s linear;
 
       & > img {
-        width: 250px;
+        width: 190px;
       }
       .item-text{
-        padding: 30px 50px 30px 0;
+        padding: 30px 50px 30px 10px;
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -447,6 +470,7 @@ $text-white: #fff;
           font-weight: 600;
         }
         &__description{
+          margin: 10px 0;
           color: $gray;
           font-size: 18px;
         }
@@ -488,11 +512,15 @@ $text-white: #fff;
 
   }
   &_level{
+    width: 340px;
+    display: flex;
+    justify-content: space-between;
     margin: 24px 0;
   }
   &_description{
     font-size: 16px;
     color: $dark;
+    max-width: 550px;
   }
   .demo-info{
     &__btn{
@@ -512,4 +540,32 @@ $text-white: #fff;
       }
     }
   }
+}
+
+.compare_select{
+  width: 400px;
+
+  p{
+    font-size: 24px;
+    color: $dark;
+  }
+  select{
+    padding: 18px 16px;
+    color: $gray;
+    border: 1px solid $gray;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 24px;
+  }
+}
+.demo-title{
+  width: 750px;
+
+  color: $dark;
+  margin-top: 20px;
+}
+.demo{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
